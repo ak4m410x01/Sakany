@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sakany.Presentation", "Sakany.Presentation\Sakany.Presentation.csproj", "{0EA5DE10-7B6A-4C60-8E52-66278BE2918D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sakany.Domain", "Sakany.Domain\Sakany.Domain.csproj", "{A46E142E-AF0A-4318-BD9D-34C55AF3491B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,8 +17,15 @@ Global
 		{0EA5DE10-7B6A-4C60-8E52-66278BE2918D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EA5DE10-7B6A-4C60-8E52-66278BE2918D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EA5DE10-7B6A-4C60-8E52-66278BE2918D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A46E142E-AF0A-4318-BD9D-34C55AF3491B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A46E142E-AF0A-4318-BD9D-34C55AF3491B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A46E142E-AF0A-4318-BD9D-34C55AF3491B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A46E142E-AF0A-4318-BD9D-34C55AF3491B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {867954C3-6299-4048-8CCD-D7B990742C76}
 	EndGlobalSection
 EndGlobal

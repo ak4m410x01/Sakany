@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sakany.Infrastructure", "Sa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sakany.Persistence", "Sakany.Persistence\Sakany.Persistence.csproj", "{AF73A207-D35E-40F8-9418-5069F29A5BC3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sakany.Application", "Sakany.Application\Sakany.Application.csproj", "{36BD0356-58A9-44D9-9BD4-705BB9DF0C8C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{AF73A207-D35E-40F8-9418-5069F29A5BC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF73A207-D35E-40F8-9418-5069F29A5BC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF73A207-D35E-40F8-9418-5069F29A5BC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36BD0356-58A9-44D9-9BD4-705BB9DF0C8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36BD0356-58A9-44D9-9BD4-705BB9DF0C8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36BD0356-58A9-44D9-9BD4-705BB9DF0C8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36BD0356-58A9-44D9-9BD4-705BB9DF0C8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sakany.Presentation", "Saka
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sakany.Domain", "Sakany.Domain\Sakany.Domain.csproj", "{A46E142E-AF0A-4318-BD9D-34C55AF3491B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sakany.Infrastructure", "Sakany.Infrastructure\Sakany.Infrastructure.csproj", "{73DE6554-C64E-4F9D-8039-4F63B54DAD05}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A46E142E-AF0A-4318-BD9D-34C55AF3491B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A46E142E-AF0A-4318-BD9D-34C55AF3491B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A46E142E-AF0A-4318-BD9D-34C55AF3491B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73DE6554-C64E-4F9D-8039-4F63B54DAD05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73DE6554-C64E-4F9D-8039-4F63B54DAD05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73DE6554-C64E-4F9D-8039-4F63B54DAD05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73DE6554-C64E-4F9D-8039-4F63B54DAD05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

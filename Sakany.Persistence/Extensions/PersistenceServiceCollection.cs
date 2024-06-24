@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sakany.Persistence.Extensions.DbContexts;
 using Sakany.Persistence.Extensions.Identity;
+using Sakany.Persistence.Extensions.Specifications;
 
 namespace Sakany.Persistence.Extensions
 {
@@ -11,6 +12,8 @@ namespace Sakany.Persistence.Extensions
         {
             services.AddDbContextsConfiguration(configuration)
                     .AddIdentityConfiguration();
+
+            services.AddSpecification();
             return services;
         }
     }

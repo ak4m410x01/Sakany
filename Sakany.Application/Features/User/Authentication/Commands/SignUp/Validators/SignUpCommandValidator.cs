@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Sakany.Application.Features.User.Authentication.Commands.SignUp.Requests;
 using Sakany.Domain.Enumerations.Users;
 using Sakany.Domain.IdentityEntities;
+using System.Data;
 
 namespace Sakany.Application.Features.User.Authentication.Commands.SignUp.Validators
 {
@@ -63,9 +64,8 @@ namespace Sakany.Application.Features.User.Authentication.Commands.SignUp.Valida
 
         private void RoleValidator()
         {
-            // TODO: Rule == UserRole.Customer || Rule == UserRole.Realtor
-            //RuleFor(request => request.Role)
-            //       .Equal(UserRole.Customer.ToString())
+            RuleFor(request => request.Role)
+                   .Must(role => role == UserRole.Customer.ToString() || role == UserRole.Realtor.ToString()).WithMessage("Role must be either Customer or Realtor.");
         }
 
         #endregion Methods

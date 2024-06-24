@@ -1,4 +1,5 @@
-﻿using Sakany.Application.Interfaces.Specifications.Base;
+﻿using Microsoft.EntityFrameworkCore;
+using Sakany.Application.Interfaces.Specifications.Base;
 
 namespace Sakany.Persistence.Specifications.Evaluations
 {

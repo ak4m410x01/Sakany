@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Sakany.Application.Interfaces.UnitOfWork;
 using Sakany.Domain.IdentityEntities;
 using Sakany.Persistence.DataSeeding.Security.Roles;
 using Sakany.Persistence.DataSeeding.Security.Users;
@@ -41,11 +42,12 @@ namespace Sakany.Persistence.DataSeeding
         private static async Task InitializeUsersDataAsync(IServiceProvider services)
         {
             var userManager = services.GetService<UserManager<ApplicationUser>>();
+            var unitOfWork = services.GetService<IUnitOfWork>();
 
-            if (userManager is null)
+            if (userManager is null || unitOfWork is null)
                 return;
 
-            await userManager.InitializeUsersDataSeedingAsync();
+            await userManager.InitializeUsersDataSeedingAsync(unitOfWork);
         }
 
         private static async Task InitializeRolesDataAsync(IServiceProvider services)

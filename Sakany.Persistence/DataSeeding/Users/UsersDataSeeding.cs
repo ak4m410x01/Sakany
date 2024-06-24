@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Sakany.Application.Interfaces.UnitOfWork;
+using Sakany.Domain.Entities.Users;
 using Sakany.Domain.Enumerations.Users;
 using Sakany.Domain.IdentityEntities;
 
@@ -6,7 +8,7 @@ namespace Sakany.Persistence.DataSeeding.Security.Users
 {
     public static class UsersDataSeeding
     {
-        private static async Task InitializeSuperAdminsAsync(this UserManager<ApplicationUser> userManager)
+        private static async Task InitializeSuperAdminsAsync(this UserManager<ApplicationUser> userManager, IUnitOfWork unitOfWork)
         {
             var superAdmin = new ApplicationUser()
             {
@@ -15,10 +17,11 @@ namespace Sakany.Persistence.DataSeeding.Security.Users
             };
 
             await userManager.CreateAsync(superAdmin, "P@ssw0rd");
+            await unitOfWork.Repository<UserProfile>().AddAsync(new UserProfile() { UserId = superAdmin.Id, Bio = string.Empty });
             await userManager.AddToRoleAsync(superAdmin, UserRole.SuperAdmin.ToString());
         }
 
-        private static async Task InitializeAdminsAsync(this UserManager<ApplicationUser> userManager)
+        private static async Task InitializeAdminsAsync(this UserManager<ApplicationUser> userManager, IUnitOfWork unitOfWork)
         {
             var admin = new ApplicationUser()
             {
@@ -27,13 +30,14 @@ namespace Sakany.Persistence.DataSeeding.Security.Users
             };
 
             await userManager.CreateAsync(admin, "P@ssw0rd");
+            await unitOfWork.Repository<UserProfile>().AddAsync(new UserProfile() { UserId = admin.Id, Bio = string.Empty });
             await userManager.AddToRoleAsync(admin, UserRole.Admin.ToString());
         }
 
-        public static async Task InitializeUsersDataSeedingAsync(this UserManager<ApplicationUser> userManager)
+        public static async Task InitializeUsersDataSeedingAsync(this UserManager<ApplicationUser> userManager, IUnitOfWork unitOfWork)
         {
-            await userManager.InitializeAdminsAsync();
-            await userManager.InitializeSuperAdminsAsync();
+            await userManager.InitializeAdminsAsync(unitOfWork);
+            await userManager.InitializeSuperAdminsAsync(unitOfWork);
         }
     }
 }

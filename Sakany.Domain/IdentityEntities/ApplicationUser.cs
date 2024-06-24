@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Sakany.Domain.Entities.Security;
+using Sakany.Domain.Entities.Users;
 
 namespace Sakany.Domain.IdentityEntities
 {
@@ -16,5 +18,12 @@ namespace Sakany.Domain.IdentityEntities
         public DateTime? DeletedAt { get; set; }
 
         #endregion Properties
+
+        #region Relationships
+
+        public virtual UserProfile? UserProfile { get; set; }
+        public virtual ICollection<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
+
+        #endregion Relationships
     }
 }

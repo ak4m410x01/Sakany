@@ -158,6 +158,98 @@ namespace Sakany.Persistence.Migrations
                     b.ToTable("UserTokens", "Security");
                 });
 
+            modelBuilder.Entity("Sakany.Domain.Entities.Security.RefreshToken", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2024, 6, 24, 12, 53, 43, 77, DateTimeKind.Utc).AddTicks(7786));
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ExpiresAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("bit")
+                        .HasComputedColumnSql("CASE WHEN [RevokedAt] IS NULL AND [ExpiresAt] > GETUTCDATE() THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT) END");
+
+                    b.Property<bool>("IsExpired")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("bit")
+                        .HasComputedColumnSql("CASE WHEN [ExpiresAt] <= GETUTCDATE() THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT) END");
+
+                    b.Property<DateTime>("ModifiedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2024, 6, 24, 12, 53, 43, 77, DateTimeKind.Utc).AddTicks(9340));
+
+                    b.Property<DateTime?>("RevokedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("RefreshTokens", "Security");
+                });
+
+            modelBuilder.Entity("Sakany.Domain.Entities.Users.UserProfile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Bio")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2024, 6, 24, 12, 53, 43, 78, DateTimeKind.Utc).AddTicks(9135));
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2024, 6, 24, 12, 53, 43, 78, DateTimeKind.Utc).AddTicks(9683));
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("Profiles", "User");
+                });
+
             modelBuilder.Entity("Sakany.Domain.IdentityEntities.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -173,7 +265,7 @@ namespace Sakany.Persistence.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 6, 24, 9, 28, 51, 718, DateTimeKind.Utc).AddTicks(735));
+                        .HasDefaultValue(new DateTime(2024, 6, 24, 12, 53, 43, 78, DateTimeKind.Utc).AddTicks(6277));
 
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
@@ -202,7 +294,7 @@ namespace Sakany.Persistence.Migrations
                     b.Property<DateTime>("ModifiedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 6, 24, 9, 28, 51, 718, DateTimeKind.Utc).AddTicks(1477));
+                        .HasDefaultValue(new DateTime(2024, 6, 24, 12, 53, 43, 78, DateTimeKind.Utc).AddTicks(6640));
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
@@ -299,6 +391,35 @@ namespace Sakany.Persistence.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Sakany.Domain.Entities.Security.RefreshToken", b =>
+                {
+                    b.HasOne("Sakany.Domain.IdentityEntities.ApplicationUser", "User")
+                        .WithMany("RefreshTokens")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Sakany.Domain.Entities.Users.UserProfile", b =>
+                {
+                    b.HasOne("Sakany.Domain.IdentityEntities.ApplicationUser", "User")
+                        .WithOne("UserProfile")
+                        .HasForeignKey("Sakany.Domain.Entities.Users.UserProfile", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Sakany.Domain.IdentityEntities.ApplicationUser", b =>
+                {
+                    b.Navigation("RefreshTokens");
+
+                    b.Navigation("UserProfile");
                 });
 #pragma warning restore 612, 618
         }

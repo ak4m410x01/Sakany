@@ -1,20 +1,21 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace Sakany.Persistence.Migrations
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public partial class AddIdentityEntities : Migration
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
-                name: "Security");
+                name: "User");
 
             migrationBuilder.EnsureSchema(
-                name: "User");
+                name: "Security");
 
             migrationBuilder.CreateTable(
                 name: "Roles",
@@ -40,8 +41,8 @@ namespace Sakany.Persistence.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false, defaultValue: "Active"),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2024, 6, 24, 9, 28, 51, 718, DateTimeKind.Utc).AddTicks(735)),
-                    ModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2024, 6, 24, 9, 28, 51, 718, DateTimeKind.Utc).AddTicks(1477)),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2024, 6, 24, 12, 53, 43, 78, DateTimeKind.Utc).AddTicks(6277)),
+                    ModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2024, 6, 24, 12, 53, 43, 78, DateTimeKind.Utc).AddTicks(6640)),
                     DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -82,6 +83,61 @@ namespace Sakany.Persistence.Migrations
                         column: x => x.RoleId,
                         principalSchema: "Security",
                         principalTable: "Roles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Profiles",
+                schema: "User",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Bio = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2024, 6, 24, 12, 53, 43, 78, DateTimeKind.Utc).AddTicks(9135)),
+                    ModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2024, 6, 24, 12, 53, 43, 78, DateTimeKind.Utc).AddTicks(9683)),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Profiles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Profiles_Users_UserId",
+                        column: x => x.UserId,
+                        principalSchema: "User",
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RefreshTokens",
+                schema: "Security",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Token = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ExpiresAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsExpired = table.Column<bool>(type: "bit", nullable: false, computedColumnSql: "CASE WHEN [ExpiresAt] <= GETUTCDATE() THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT) END"),
+                    RevokedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false, computedColumnSql: "CASE WHEN [RevokedAt] IS NULL AND [ExpiresAt] > GETUTCDATE() THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT) END"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2024, 6, 24, 12, 53, 43, 77, DateTimeKind.Utc).AddTicks(7786)),
+                    ModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2024, 6, 24, 12, 53, 43, 77, DateTimeKind.Utc).AddTicks(9340)),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RefreshTokens", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RefreshTokens_Users_UserId",
+                        column: x => x.UserId,
+                        principalSchema: "User",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -181,6 +237,19 @@ namespace Sakany.Persistence.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Profiles_UserId",
+                schema: "User",
+                table: "Profiles",
+                column: "UserId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RefreshTokens_UserId",
+                schema: "Security",
+                table: "RefreshTokens",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_RoleClaims_RoleId",
                 schema: "Security",
                 table: "RoleClaims",
@@ -227,9 +296,17 @@ namespace Sakany.Persistence.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Profiles",
+                schema: "User");
+
+            migrationBuilder.DropTable(
+                name: "RefreshTokens",
+                schema: "Security");
+
             migrationBuilder.DropTable(
                 name: "RoleClaims",
                 schema: "Security");

@@ -19,8 +19,4 @@
 		<ProjectReference Include="..\Sakany.Shared\Sakany.Shared.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Extensions\" />
-	</ItemGroup>
-
 </Project>

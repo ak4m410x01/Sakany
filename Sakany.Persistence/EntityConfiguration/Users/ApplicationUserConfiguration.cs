@@ -1,12 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
-using Sakany.Domain.IdentityEntities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Sakany.Domain.Enumerations.Users;
+using Sakany.Domain.IdentityEntities;
 
 namespace Sakany.Persistence.EntityConfiguration.Users
 {

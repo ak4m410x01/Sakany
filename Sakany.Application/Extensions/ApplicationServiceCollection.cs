@@ -20,6 +20,12 @@ namespace Sakany.Application.Extensions
 
             #endregion Configure MediatR
 
+            #region Configure HttpContextAccessor
+
+            services.AddHttpContextAccessor();
+
+            #endregion Configure HttpContextAccessor
+
             return services;
         }
     }

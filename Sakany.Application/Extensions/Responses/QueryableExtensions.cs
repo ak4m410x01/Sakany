@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Sakany.Shared.Responses;
 
-namespace Sakany.Application.Responses
+namespace Sakany.Application.Extensions.Responses
 {
     public static class QueryableExtensions
     {

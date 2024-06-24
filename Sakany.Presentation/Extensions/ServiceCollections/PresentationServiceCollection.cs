@@ -2,6 +2,7 @@
 using Sakany.Presentation.Extensions.ServiceCollections.ApiVersioning;
 using Sakany.Presentation.Extensions.ServiceCollections.Authentication;
 using Sakany.Presentation.Extensions.ServiceCollections.Cors;
+using Sakany.Presentation.Extensions.ServiceCollections.Exceptions;
 using Sakany.Presentation.Extensions.ServiceCollections.Swagger;
 
 namespace Sakany.Presentation.Extensions.ServiceCollections
@@ -33,6 +34,12 @@ namespace Sakany.Presentation.Extensions.ServiceCollections
             services.AddControllers();
 
             #endregion Configure Controllers
+
+            #region Configure Exceptions
+
+            services.AddValidationErrorExceptionConfiguration();
+
+            #endregion Configure Exceptions
 
             #region Configure Cors
 

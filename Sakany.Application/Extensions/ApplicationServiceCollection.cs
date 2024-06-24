@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Sakany.Application.Extensions.AutoMapper;
 using Sakany.Application.Extensions.MediatR;
+using Sakany.Application.Extensions.Validation;
 
 namespace Sakany.Application.Extensions
 {
@@ -25,6 +26,12 @@ namespace Sakany.Application.Extensions
             services.AddHttpContextAccessor();
 
             #endregion Configure HttpContextAccessor
+
+            #region Configure Fluent Validation
+
+            services.AddValidationConfiguration();
+
+            #endregion Configure Fluent Validation
 
             return services;
         }

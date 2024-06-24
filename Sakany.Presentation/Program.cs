@@ -30,7 +30,7 @@ namespace Sakany.Presentation
 
             #region Use Middlewares
 
-            app.UsePresentationMiddlewares(app.Environment);
+            app.UsePresentationMiddlewares();
 
             #endregion Use Middlewares
 

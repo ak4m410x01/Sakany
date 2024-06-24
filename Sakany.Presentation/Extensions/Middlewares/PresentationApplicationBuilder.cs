@@ -7,11 +7,11 @@ namespace Sakany.Presentation.Extensions.Middlewares
 {
     public static class PresentationApplicationBuilder
     {
-        public static IApplicationBuilder UsePresentationMiddlewares(this IApplicationBuilder app, IHostEnvironment environment)
+        public static IApplicationBuilder UsePresentationMiddlewares(this IApplicationBuilder app)
         {
             app.UseCorsMiddlewares();
 
-            app.UseSwaggerMiddlewares(environment);
+            app.UseSwaggerMiddlewares();
 
             app.UseAuthenticationMiddlewares();
 

@@ -4,6 +4,7 @@ using Sakany.Persistence.Extensions.DbContexts;
 using Sakany.Persistence.Extensions.Identity;
 using Sakany.Persistence.Extensions.Repositories.Base;
 using Sakany.Persistence.Extensions.Specifications;
+using Sakany.Persistence.Extensions.UnitOfWork;
 
 namespace Sakany.Persistence.Extensions
 {
@@ -14,8 +15,9 @@ namespace Sakany.Persistence.Extensions
             services.AddDbContextsConfiguration(configuration)
                     .AddIdentityConfiguration();
 
-            services.AddSpecificationConfiguration();
-            services.AddBaseRepositoryConfiguration();
+            services.AddSpecificationConfiguration()
+                    .AddBaseRepositoryConfiguration()
+                    .AddUnitOfWorkConfiguration();
 
             return services;
         }

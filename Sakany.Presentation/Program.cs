@@ -1,32 +1,52 @@
+using Sakany.Persistence.DataSeeding;
+using Sakany.Persistence.Extensions;
+using Sakany.Presentation.Extensions.Middlewares;
+using Sakany.Presentation.Extensions.ServiceCollections;
+
 namespace Sakany.Presentation
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
+            #region Create Web Application
+
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            #endregion Create Web Application
 
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            #region Clean Architecture Layers Configuration
+
+            builder.Services.AddPresentationLayer(builder.Configuration)
+                            .AddPersistenceLayer(builder.Configuration);
+
+            #endregion Clean Architecture Layers Configuration
+
+            #region Build Web Application
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+            #endregion Build Web Application
 
-            app.UseAuthorization();
+            #region Use Middlewares
+
+            app.UsePresentationMiddlewares(app.Environment);
+
+            #endregion Use Middlewares
 
             app.MapControllers();
 
+            #region Data Seeding
+
+            await DataSeeding.Initialize(app.Services.CreateAsyncScope().ServiceProvider);
+
+            #endregion Data Seeding
+
+            #region Run Web Application
+
             app.Run();
+
+            #endregion Run Web Application
         }
     }
 }

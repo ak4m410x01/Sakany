@@ -1,3 +1,5 @@
+using Sakany.Application.Extensions;
+using Sakany.Infrastructure.Extensions;
 using Sakany.Persistence.DataSeeding;
 using Sakany.Persistence.Extensions;
 using Sakany.Presentation.Extensions.Middlewares;
@@ -18,7 +20,9 @@ namespace Sakany.Presentation
             #region Clean Architecture Layers Configuration
 
             builder.Services.AddPresentationLayer(builder.Configuration)
-                            .AddPersistenceLayer(builder.Configuration);
+                            .AddPersistenceLayer(builder.Configuration)
+                            .AddApplicationLayer()
+                            .AddInfrastructureLayer();
 
             #endregion Clean Architecture Layers Configuration
 

@@ -2,6 +2,7 @@
 using Sakany.Presentation.Extensions.Middlewares.Authorization;
 using Sakany.Presentation.Extensions.Middlewares.Cors;
 using Sakany.Presentation.Extensions.Middlewares.Exceptions;
+using Sakany.Presentation.Extensions.Middlewares.StaticFiles;
 using Sakany.Presentation.Extensions.Middlewares.Swagger;
 
 namespace Sakany.Presentation.Extensions.Middlewares
@@ -12,13 +13,15 @@ namespace Sakany.Presentation.Extensions.Middlewares
         {
             app.UseGlobalExceptionMiddlewares();
 
-            app.UseExeptionHandlerMiddleware();
+            app.UseExeptionHandlerMiddlewares();
 
             app.UseStatusCodePagesWithReExecute("/Api/V1/Errors/{0}");
 
             app.UseCorsMiddlewares();
 
             app.UseSwaggerMiddlewares();
+
+            app.UseStaticFilesMiddlewares();
 
             app.UseAuthenticationMiddlewares();
 

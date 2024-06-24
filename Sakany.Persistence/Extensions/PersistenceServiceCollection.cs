@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sakany.Persistence.Extensions.DbContexts;
 using Sakany.Persistence.Extensions.Identity;
+using Sakany.Persistence.Extensions.Repositories.Base;
 using Sakany.Persistence.Extensions.Specifications;
 
 namespace Sakany.Persistence.Extensions
@@ -13,7 +14,9 @@ namespace Sakany.Persistence.Extensions
             services.AddDbContextsConfiguration(configuration)
                     .AddIdentityConfiguration();
 
-            services.AddSpecification();
+            services.AddSpecificationConfiguration();
+            services.AddBaseRepositoryConfiguration();
+
             return services;
         }
     }

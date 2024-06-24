@@ -1,0 +1,45 @@
+﻿using Asp.Versioning;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using Sakany.Application.Features.User.Authentication.Commands.SignUp.DTOs;
+using Sakany.Application.Features.User.Authentication.Commands.SignUp.Requests;
+using Sakany.Application.Features.User.Authentication.Queries.SignIn.DTOs;
+using Sakany.Application.Features.User.Authentication.Queries.SignIn.Requests;
+
+namespace Sakany.Presentation.Controllers.User.Authentication
+{
+    [ApiVersion("1.0")]
+    public class AuthenticationController : UserAPIBaseController
+    {
+        #region Constructors
+
+        public AuthenticationController(IMediator mediator) : base(mediator)
+        {
+        }
+
+        #endregion Constructors
+
+        #region Methods
+
+        [HttpPost("SignUp")]
+        [MapToApiVersion("1.0")]
+        [ProducesResponseType(typeof(SignUpCommandDTO), StatusCodes.Status201Created)]
+        public async Task<IActionResult> SignUpAsync([FromBody] SignUpCommandRequest request)
+        {
+            var response = await Mediator.Send(request);
+            return ResponseResult(response);
+        }
+
+        [HttpPost("SignIn")]
+        [MapToApiVersion("1.0")]
+        [ProducesResponseType(typeof(SignInQueryDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(SignInQueryDTO), StatusCodes.Status401Unauthorized)]
+        public Task<IActionResult> SignInAsync(SignInQueryRequest request)
+        {
+            // TODO: Task_01 By Ahmed Hazem
+            throw new NotImplementedException();
+        }
+
+        #endregion Methods
+    }
+}

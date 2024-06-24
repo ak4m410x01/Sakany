@@ -49,7 +49,7 @@ namespace Sakany.Infrastructure.Services.Authentication
             await _unitOfWork.Repository<UserProfile>().AddAsync(new UserProfile() { UserId = user.Id, Bio = string.Empty });
 
             // Assign Roles
-            await _userManager.AddToRoleAsync(user, UserRole.Customer.ToString());
+            await _userManager.AddToRoleAsync(user, request.Role);
 
             return new SignUpDTOResponse();
         }

@@ -1,6 +1,10 @@
-﻿namespace Sakany.Application.DTOs.Authentication.SignUp
+﻿using MediatR;
+using Sakany.Application.Features.User.Authentication.Commands.SignUp.DTOs;
+using Sakany.Shared.Responses;
+
+namespace Sakany.Application.Features.User.Authentication.Commands.SignUp.Requests
 {
-    public class SignUpDTORequest
+    public class SignUpCommandRequest : IRequest<Response<SignUpCommandDTO>>
     {
         #region Properties
 

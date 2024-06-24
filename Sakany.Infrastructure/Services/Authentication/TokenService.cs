@@ -1,16 +1,16 @@
-﻿using Sakany.Application.DTOs.Authentication.Token;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
+using Sakany.Application.DTOs.Authentication.Token;
 using Sakany.Application.Interfaces.Services.Authentication;
 using Sakany.Application.Interfaces.Specifications.Base;
 using Sakany.Application.Interfaces.UnitOfWork;
+using Sakany.Domain.Entities.Security;
 using Sakany.Domain.IdentityEntities;
 using Sakany.Shared.Helpers.JwtSettings;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using Sakany.Domain.Entities.Security;
 
 namespace Sakany.Infrastructure.Services.Authentication
 {

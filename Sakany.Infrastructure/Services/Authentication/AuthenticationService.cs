@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Sakany.Application.DTOs.Authentication.SignIn;
 using Sakany.Application.DTOs.Authentication.SignUp;
 using Sakany.Application.DTOs.Authentication.Token;
@@ -7,8 +9,6 @@ using Sakany.Application.Interfaces.UnitOfWork;
 using Sakany.Domain.Entities.Users;
 using Sakany.Domain.Enumerations.Users;
 using Sakany.Domain.IdentityEntities;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using System.Net.Mail;
 
 namespace Sakany.Infrastructure.Services.Authentication

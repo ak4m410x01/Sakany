@@ -1,6 +1,6 @@
-﻿using Sakany.Application.Interfaces.Services.Authentication;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Sakany.Application.Interfaces.Services.Authentication;
 using Sakany.Infrastructure.Services.Authentication;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Sakany.Infrastructure.Extensions.Authentication
 {

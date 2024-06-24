@@ -1,6 +1,6 @@
-﻿using Sakany.Application.Interfaces.Services.Media;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Sakany.Application.Interfaces.Services.Media;
 using Sakany.Infrastructure.Services.Media;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Sakany.Infrastructure.Extensions.Media
 {

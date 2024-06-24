@@ -1,5 +1,5 @@
-﻿using Sakany.Shared.Responses;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Sakany.Shared.Responses;
 
 namespace ECommerceAPI.Presentation.Controllers.Errors
 {

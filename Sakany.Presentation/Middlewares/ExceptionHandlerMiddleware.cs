@@ -1,6 +1,6 @@
-﻿using Sakany.Shared.Responses;
-using FluentValidation;
+﻿using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using Sakany.Shared.Responses;
 using System.Net;
 
 namespace Sakany.Presentation.Middlewares

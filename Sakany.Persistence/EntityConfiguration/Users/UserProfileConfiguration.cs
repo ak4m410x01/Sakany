@@ -1,6 +1,6 @@
-﻿using Sakany.Domain.Entities.Users;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Sakany.Domain.Entities.Users;
 
 namespace Sakany.Persistence.EntityConfiguration.Users
 {

@@ -1,5 +1,5 @@
-﻿using Sakany.Shared.Exceptions.ValidationError;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Sakany.Shared.Exceptions.ValidationError;
 
 namespace Sakany.Presentation.Extensions.ServiceCollections.Exceptions
 {

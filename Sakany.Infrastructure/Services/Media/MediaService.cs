@@ -1,6 +1,6 @@
-﻿using Sakany.Application.Interfaces.Services.Media;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Sakany.Application.Interfaces.Services.Media;
 
 namespace Sakany.Infrastructure.Services.Media
 {

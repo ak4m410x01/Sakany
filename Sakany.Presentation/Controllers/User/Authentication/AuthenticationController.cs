@@ -34,10 +34,11 @@ namespace Sakany.Presentation.Controllers.User.Authentication
         [MapToApiVersion("1.0")]
         [ProducesResponseType(typeof(SignInQueryDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(SignInQueryDTO), StatusCodes.Status401Unauthorized)]
-        public Task<IActionResult> SignInAsync(SignInQueryRequest request)
+        public async Task<IActionResult> SignInAsync(SignInQueryRequest request)
         {
             // TODO: Task_01 By Ahmed Hazem
-            throw new NotImplementedException();
+            var response = await Mediator.Send(request);
+            return ResponseResult(response);
         }
 
         #endregion Methods

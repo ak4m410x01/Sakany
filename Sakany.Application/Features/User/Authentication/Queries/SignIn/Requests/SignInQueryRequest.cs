@@ -1,7 +1,18 @@
-﻿namespace Sakany.Application.Features.User.Authentication.Queries.SignIn.Requests
+﻿using MediatR;
+using Sakany.Application.Features.User.Authentication.Queries.SignIn.DTOs;
+using Sakany.Shared.Responses;
+
+namespace Sakany.Application.Features.User.Authentication.Queries.SignIn.Requests
 {
-    public class SignInQueryRequest
+    public class SignInQueryRequest: IRequest<Response<SignInQueryDTO>>
     {
         // TODO: Task_01 By Ahmed Hazem
+
+        #region Properties
+
+        public string Email { get; set; } = default!;
+        public string Password { get; set; } = default!;
+
+        #endregion Properties
     }
 }

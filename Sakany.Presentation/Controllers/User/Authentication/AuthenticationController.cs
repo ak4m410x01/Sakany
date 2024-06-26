@@ -36,7 +36,6 @@ namespace Sakany.Presentation.Controllers.User.Authentication
         [ProducesResponseType(typeof(SignInQueryDTO), StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> SignInAsync(SignInQueryRequest request)
         {
-            // TODO: Task_01 By Ahmed Hazem
             var response = await Mediator.Send(request);
             return ResponseResult(response);
         }

@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Identity;
 using Sakany.Application.Features.User.Authentication.Commands.SignUp.Requests;
 using Sakany.Domain.Enumerations.Users;
 using Sakany.Domain.IdentityEntities;
-using System.Data;
 
 namespace Sakany.Application.Features.User.Authentication.Commands.SignUp.Validators
 {

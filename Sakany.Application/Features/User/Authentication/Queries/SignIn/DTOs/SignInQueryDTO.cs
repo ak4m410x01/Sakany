@@ -2,8 +2,6 @@
 {
     public class SignInQueryDTO
     {
-        // TODO: Task_01 By Ahmed Hazem
-
         #region Properties
 
         public string? Message { get; set; }

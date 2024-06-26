@@ -1,6 +1,6 @@
-﻿using Sakany.Presentation.Controllers.Base;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Sakany.Presentation.Controllers.Base;
 
 namespace Sakany.Presentation.Controllers.User
 {

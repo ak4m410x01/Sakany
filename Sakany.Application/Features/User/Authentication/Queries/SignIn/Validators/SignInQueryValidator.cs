@@ -7,8 +7,6 @@ namespace Sakany.Application.Features.User.Authentication.Queries.SignIn.Validat
 {
     public class SignInQueryValidator : AbstractValidator<SignInQueryRequest>
     {
-        // TODO: Task_01 By Ahmed Hazem
-
         #region Properties
 
         private readonly UserManager<ApplicationUser> _userManager;

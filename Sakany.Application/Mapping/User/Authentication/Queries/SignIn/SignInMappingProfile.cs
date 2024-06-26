@@ -5,9 +5,8 @@ using Sakany.Application.Features.User.Authentication.Queries.SignIn.Requests;
 
 namespace Sakany.Application.Mapping.User.Authentication.Queries.SignIn
 {
-    public class SignInMappingProfile:Profile
+    public class SignInMappingProfile : Profile
     {
-        // TODO: Task_01 By Ahmed Hazem
         #region Constructors
 
         public SignInMappingProfile()
@@ -21,6 +20,5 @@ namespace Sakany.Application.Mapping.User.Authentication.Queries.SignIn
         }
 
         #endregion Constructors
-
     }
 }

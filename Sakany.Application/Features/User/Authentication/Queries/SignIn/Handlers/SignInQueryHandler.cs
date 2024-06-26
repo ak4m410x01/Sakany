@@ -1,16 +1,15 @@
 ﻿using AutoMapper;
+using MediatR;
 using Sakany.Application.DTOs.Authentication.SignIn;
 using Sakany.Application.Features.User.Authentication.Queries.SignIn.DTOs;
 using Sakany.Application.Features.User.Authentication.Queries.SignIn.Requests;
 using Sakany.Application.Interfaces.Services.Authentication;
 using Sakany.Shared.Responses;
-using MediatR;
+
 namespace Sakany.Application.Features.User.Authentication.Queries.SignIn.Handlers
 {
-    public class SignInQueryHandler:ResponseHandler, IRequestHandler<SignInQueryRequest, Response<SignInQueryDTO>>
+    public class SignInQueryHandler : ResponseHandler, IRequestHandler<SignInQueryRequest, Response<SignInQueryDTO>>
     {
-        // TODO: Task_01 By Ahmed Hazem
-
         #region Properties
 
         private readonly IAuthenticationService _authenticationService;
@@ -42,6 +41,5 @@ namespace Sakany.Application.Features.User.Authentication.Queries.SignIn.Handler
         }
 
         #endregion Methods
-
     }
 }

@@ -7,7 +7,6 @@ using Sakany.Application.DTOs.Authentication.Token;
 using Sakany.Application.Interfaces.Services.Authentication;
 using Sakany.Application.Interfaces.UnitOfWork;
 using Sakany.Domain.Entities.Users;
-using Sakany.Domain.Enumerations.Users;
 using Sakany.Domain.IdentityEntities;
 using System.Net.Mail;
 

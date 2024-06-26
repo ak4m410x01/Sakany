@@ -8,10 +8,10 @@ namespace Sakany.Application.Features.User.Authentication.Commands.SignUp.Reques
     {
         #region Properties
 
+        public string Role { get; set; } = default!;
         public string Email { get; set; } = default!;
         public string Password { get; set; } = default!;
         public string ConfirmPassword { get; set; } = default!;
-        public string Role { get; set; } = default!;
 
         #endregion Properties
     }

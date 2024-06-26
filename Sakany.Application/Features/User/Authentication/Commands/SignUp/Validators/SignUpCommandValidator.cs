@@ -29,10 +29,18 @@ namespace Sakany.Application.Features.User.Authentication.Commands.SignUp.Valida
 
         private void InitializeRoles()
         {
+            RoleValidator();
             EmailValidator();
             PasswordValidator();
             ConfirmPasswordValidator();
-            RoleValidator();
+        }
+
+        private void RoleValidator()
+        {
+            RuleFor(request => request.Role)
+                   .NotEmpty().WithMessage("Role is a required field.")
+                   .NotNull().WithMessage("Role can't be null.")
+                   .Must(role => role == UserRole.Customer.ToString() || role == UserRole.Realtor.ToString()).WithMessage("Role must be either Customer or Realtor.");
         }
 
         private void EmailValidator()
@@ -60,14 +68,6 @@ namespace Sakany.Application.Features.User.Authentication.Commands.SignUp.Valida
         {
             RuleFor(request => request.ConfirmPassword)
                    .Equal(request => request.Password).WithMessage("Passwords must match.");
-        }
-
-        private void RoleValidator()
-        {
-            RuleFor(request => request.Role)
-                   .NotEmpty().WithMessage("Role is a required field.")
-                   .NotNull().WithMessage("Role can't be null.")
-                   .Must(role => role == UserRole.Customer.ToString() || role == UserRole.Realtor.ToString()).WithMessage("Role must be either Customer or Realtor.");
         }
 
         #endregion Methods

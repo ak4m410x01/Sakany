@@ -10,7 +10,7 @@ namespace Sakany.Persistence.Extensions.DbContexts
         public static IServiceCollection AddApplicationDbContextConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
             // Get Connection String From appsettings.json
-            var connectionString = configuration.GetConnectionString("LocalDevelopmentDbConnection");
+            var connectionString = configuration.GetConnectionString("DefaultConnection");
 
             // Add Application Db Context
             services.AddDbContext<ApplicationDbContext>(options =>

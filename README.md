@@ -19,6 +19,45 @@ An API platform connecting customers with realtors for buying or renting beds, r
 
 ---
 
+## 🛠 Installation and setup
+
+1. Install Docker [here](https://www.docker.com/get-started/)
+2. Install Git [here](https://git-scm.com/downloads)
+3. Create a working directory:
+
+   ```bash
+   mkdir ~/Sakany && cd ~/Sakany
+   ```
+
+4. Clone the repository
+
+   ```bash
+   git clone https://github.com/ak4m410x01/Sakany.git .
+   ```
+
+5. Start the application
+
+   ```bash
+    docker compose up -d
+   ```
+
+6. Access API: http://localhost:8080/Swagger/index.html
+
+7. Access DB: localhost:1433
+
+8. Don't forget .env file with variables
+
+| Variable                               | Value                                                                                                        |
+| -------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| SA_PASSWORD                            | P@ssw0rd                                                                                                     |
+| ConnectionStrings\_\_DefaultConnection | Server=sqlserver;Database=SakanyDb;User ID=sa;Password=P@ssw0rd;Encrypt=False;Trust Server Certificate=True; |
+| ASPNETCORE_ENVIRONMENT                 | Development                                                                                                  |
+
+note:
+these variables are for the lab environment only... don't use these in xxx production environments xxx
+
+---
+
 ## 🛠 Documentation and Endpoints
 
 1. [Postman]()

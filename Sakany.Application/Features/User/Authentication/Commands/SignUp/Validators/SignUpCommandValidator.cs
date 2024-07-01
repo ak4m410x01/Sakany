@@ -19,34 +19,25 @@ namespace Sakany.Application.Features.User.Authentication.Commands.SignUp.Valida
         public SignUpCommandValidator(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
-            InitializeRoles();
+            InitializeRules();
         }
 
         #endregion Constructors
 
         #region Methods
 
-        private void InitializeRoles()
+        private void InitializeRules()
         {
-            RoleValidator();
             EmailValidator();
             PasswordValidator();
             ConfirmPasswordValidator();
         }
 
-        private void RoleValidator()
-        {
-            RuleFor(request => request.Role)
-                   .NotEmpty().WithMessage("Role is a required field.")
-                   .NotNull().WithMessage("Role can't be null.")
-                   .Must(role => role == UserRole.Customer.ToString() || role == UserRole.Realtor.ToString()).WithMessage("Role must be either Customer or Realtor.");
-        }
-
         private void EmailValidator()
         {
             RuleFor(request => request.Email)
-                   .NotEmpty().WithMessage("Email is a required field.")
-                   .NotNull().WithMessage("Email can't be null.")
+                   .NotEmpty().WithMessage("Email is required field.")
+                   .NotNull().WithMessage("Email must be not null.")
                    .Matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$").WithMessage("Email must be valid.")
                    .MustAsync(async (email, cancellationToken) => (await _userManager.FindByEmailAsync(email)) is null).WithMessage("Email already exists.");
         }
@@ -54,8 +45,8 @@ namespace Sakany.Application.Features.User.Authentication.Commands.SignUp.Valida
         private void PasswordValidator()
         {
             RuleFor(request => request.Password)
-                   .NotEmpty().WithMessage("Password is a required field.")
-                   .NotNull().WithMessage("Password can't be null.")
+                   .NotEmpty().WithMessage("Password is required field.")
+                   .NotNull().WithMessage("Password must be not null.")
                    .MinimumLength(8).WithMessage("Password must be at least 8 characters long.")
                    .Must(password => password.Any(char.IsUpper)).WithMessage("Password must contain an uppercase letter.")
                    .Must(password => password.Any(char.IsLower)).WithMessage("Password must contain a lowercase letter.")

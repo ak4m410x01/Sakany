@@ -1,12 +1,12 @@
 ﻿using FluentValidation;
-using Sakany.Application.Features.User.Authentication.Queries.GetAccessToken.Requests;
+using Sakany.Application.Features.User.Authentication.Commands.GetRefreshToken.Requests;
 using Sakany.Application.Interfaces.Specifications.Base;
 using Sakany.Application.Interfaces.UnitOfWork;
 using Sakany.Domain.Entities.Security;
 
-namespace Sakany.Application.Features.User.Authentication.Queries.GetAccessToken.Validators
+namespace Sakany.Application.Features.User.Authentication.Commands.GetRefreshToken.Validators
 {
-    public class GetAccessTokenQueryValidator : AbstractValidator<GetAccessTokenQueryRequest>
+    public class GetRefreshTokenCommandValidator : AbstractValidator<GetRefreshTokenCommandRequest>
     {
         #region Properties
 
@@ -17,7 +17,7 @@ namespace Sakany.Application.Features.User.Authentication.Queries.GetAccessToken
 
         #region Constructors
 
-        public GetAccessTokenQueryValidator(IUnitOfWork unitOfWork, IBaseSpecification<RefreshToken> refreshTokenSpecification)
+        public GetRefreshTokenCommandValidator(IUnitOfWork unitOfWork, IBaseSpecification<RefreshToken> refreshTokenSpecification)
         {
             _unitOfWork = unitOfWork;
             _refreshTokenSpecification = refreshTokenSpecification;
